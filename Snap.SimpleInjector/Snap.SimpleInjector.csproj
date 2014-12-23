@@ -5,16 +5,17 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{3F3A6A53-D90C-41B6-88FF-D211DE0857D3}</ProjectGuid>
+    <ProjectGuid>{8ADE2FD7-93B9-4936-8B7B-34DB14443C9A}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Snap.Tests</RootNamespace>
-    <AssemblyName>Snap.Tests</AssemblyName>
+    <RootNamespace>Snap.SimpleInjector</RootNamespace>
+    <AssemblyName>Snap.SimpleInjector</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <FileUpgradeFlags>
     </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
     <OldToolsVersion>3.5</OldToolsVersion>
-    <UpgradeBackupLocation />
     <TargetFrameworkProfile />
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
     <BuildPackage>false</BuildPackage>
@@ -65,8 +66,6 @@
   <PropertyGroup>
     <FrameworkPackageDir Condition="'$(TargetFrameworkVersion)' == 'v4.0'">NET40</FrameworkPackageDir>
     <FrameworkPackageDir Condition="'$(TargetFrameworkVersion)' == 'v3.5'">NET35</FrameworkPackageDir>
-    <FrameworkPackageDirNinject Condition="'$(TargetFrameworkVersion)' == 'v4.0'">net40-Full</FrameworkPackageDirNinject>
-    <FrameworkPackageDirNinject Condition="'$(TargetFrameworkVersion)' == 'v3.5'">net35-Full</FrameworkPackageDirNinject>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'NET45-Debug|AnyCPU'">
     <DebugSymbols>true</DebugSymbols>
@@ -87,40 +86,24 @@
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Autofac">
-      <HintPath>..\packages\Autofac.3.3.0\lib\net40\Autofac.dll</HintPath>
-    </Reference>
     <Reference Include="Castle.Core">
       <HintPath>..\packages\Castle.Core.3.2.2\lib\net40-client\Castle.Core.dll</HintPath>
     </Reference>
-    <Reference Include="Castle.Windsor">
-      <HintPath>..\packages\Castle.Windsor.3.2.1\lib\net40\Castle.Windsor.dll</HintPath>
+    <Reference Include="CommonServiceLocator.SimpleInjectorAdapter">
+      <HintPath>..\packages\CommonServiceLocator.SimpleInjectorAdapter.2.6.1\lib\portable-net4+sl4+wp8+win8+wpa81\CommonServiceLocator.SimpleInjectorAdapter.dll</HintPath>
     </Reference>
     <Reference Include="Fasterflect">
       <HintPath>..\packages\fasterflect.2.1.3\lib\net40\Fasterflect.dll</HintPath>
     </Reference>
-    <Reference Include="LinFu.Core">
-      <HintPath>..\packages\LinFu.Core.2.3.0.41559\lib\net35\LinFu.Core.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\CommonServiceLocator.1.0\lib\NET35\Microsoft.Practices.ServiceLocation.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-  <ItemGroup>
-    <Reference Include="Ninject">
-      <HintPath>..\packages\Ninject.3.0.1.10\lib\net40\Ninject.dll</HintPath>
-    </Reference>
-    <Reference Include="nunit.framework">
-      <HintPath>..\packages\NUnit.2.6.3\lib\nunit.framework.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Portable.CommonServiceLocator.1.2.2\lib\net35\Microsoft.Practices.ServiceLocation.dll</HintPath>
     </Reference>
     <Reference Include="SimpleInjector">
       <HintPath>..\packages\SimpleInjector.2.6.1\lib\net40-client\SimpleInjector.dll</HintPath>
     </Reference>
     <Reference Include="SimpleInjector.Diagnostics">
       <HintPath>..\packages\SimpleInjector.2.6.1\lib\net40-client\SimpleInjector.Diagnostics.dll</HintPath>
-    </Reference>
-    <Reference Include="StructureMap">
-      <HintPath>..\packages\structuremap.2.6.4.1\lib\net40\StructureMap.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
@@ -136,77 +119,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AspectTests.cs" />
-    <Compile Include="AutofacTests.cs" />
-    <Compile Include="CastleWindsorTests.cs" />
-    <Compile Include="Fakes\BadCode.cs" />
-    <Compile Include="Fakes\CustomPrefixScanner.cs" />
-    <Compile Include="Fakes\DummyDependency.cs" />
-    <Compile Include="Fakes\MockAspectContainer.cs" />
-    <Compile Include="Fakes\NotInterceptable.cs" />
-    <Compile Include="Fakes\OrderedCode.cs" />
-    <Compile Include="Fakes\TypeWithoutInterface.cs" />
-    <Compile Include="Interceptors\PublicClassAttribute.cs" />
-    <Compile Include="Interceptors\PublicProtectedClassAttribute.cs" />
-    <Compile Include="Interceptors\FirstAttribute.cs" />
-    <Compile Include="Interceptors\FirstInterceptor.cs" />
-    <Compile Include="Interceptors\FourthClassAttribute.cs" />
-    <Compile Include="Interceptors\FourthClassInterceptor.cs" />
-    <Compile Include="Interceptors\SampleInterceptor.cs" />
-    <Compile Include="Interceptors\HandleErrorAttribute.cs" />
-    <Compile Include="Interceptors\HandleErrorInterceptor.cs" />
-    <Compile Include="Interceptors\SampleAttribute.cs" />
-    <Compile Include="Interceptors\SecondAttribute.cs" />
-    <Compile Include="Interceptors\SecondInterceptor.cs" />
-    <Compile Include="Interceptors\TestConventionAttribute.cs" />
-    <Compile Include="Interceptors\TestConventionInterceptor.cs" />
-    <Compile Include="Interceptors\ThirdAttribute.cs" />
-    <Compile Include="Interceptors\ThirdInterceptor.cs" />
-    <Compile Include="LinFuTests.cs" />
-    <Compile Include="NinjectTests.cs" />
-    <Compile Include="SimpleInjectorTests.cs" />
-    <Compile Include="StructureMapTests.cs" />
-    <Compile Include="MethodFormatterTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TestBase.cs" />
+    <Compile Include="SampleSimpleInjectorAopConfig.cs" />
+    <Compile Include="SimpleInjectorAspectContainer.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Snap.Autofac\Snap.Autofac.csproj">
-      <Project>{47681067-0B27-4B18-819C-0A2F3D0DB2D6}</Project>
-      <Name>Snap.Autofac</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Snap.CastleWindsor\Snap.CastleWindsor.csproj">
-      <Project>{D1102CFD-63B5-4587-AB70-AF59B7FB28E1}</Project>
-      <Name>Snap.CastleWindsor</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Snap.LinFu\Snap.LinFu.csproj">
-      <Project>{B6C02C50-E493-408C-9649-2872CB591FA0}</Project>
-      <Name>Snap.LinFu</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Snap.Ninject\Snap.Ninject.csproj">
-      <Project>{C8C529ED-68D6-4877-9D1A-78E34AA1465F}</Project>
-      <Name>Snap.Ninject</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Snap.SimpleInjector\Snap.SimpleInjector.csproj">
-      <Project>{8ade2fd7-93b9-4936-8b7b-34db14443c9a}</Project>
-      <Name>Snap.SimpleInjector</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Snap.StructureMap\Snap.StructureMap.csproj">
-      <Project>{9B28439F-F207-4669-8C89-E5CD86098FCC}</Project>
-      <Name>Snap.StructureMap</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Snap\Snap.csproj">
       <Project>{C1B09D15-F861-48F4-8DA3-FEC0E03CA0FC}</Project>
       <Name>Snap</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
-    <None Include="packages.config">
-      <SubType>Designer</SubType>
-    </None>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
